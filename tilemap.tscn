@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=4 uid="uid://cfv5pheq0fcvc"]
+
+[ext_resource type="Script" path="res://Tilemap.cs" id="1_8ii3m"]
+[ext_resource type="TileSet" uid="uid://cynu3l0yoj7vd" path="res://new_tile_set.tres" id="1_gyrpu"]
+
+[node name="TileMapScene" type="Node2D"]
+script = ExtResource("1_8ii3m")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(9.62615e-08, 0.313215, 0.313406, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="BackgroundLayer"]
+position = Vector2(500, 350)
+tile_map_data = PackedByteArray("AAD/////AgACAAMAAAAAAAAAAgAAAAEAAAAAAP//AgAEAAgAAAABAAAAAgAAAAwAAQABAP//AgAAAAwAAQABAP7/AgAAAAwAAQAAAP7/AgAAAAwAAQAAAAEAAgAAAAwAAQD//wEAAgAAAAwAAQD//wAAAgAAAAwAAQD+////AgAAAAwAAQD///7/AgAAAAwAAQA=")
+tile_set = ExtResource("1_gyrpu")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -174.0
+offset_right = 157.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Currently Selected Tile"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 47.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[connection signal="button_down" from="CanvasLayer/MarginContainer/QuitButton" to="." method="QuitButtonClicked"]
